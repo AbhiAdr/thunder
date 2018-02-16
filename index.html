@@ -2,15 +2,23 @@
 <html>
 <head>
     <title></title>
-
+    <link rel="stylesheet" href="dist/css/site.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="dist/js/site.min.js"></script>
     <style type="text/css">
         
-        @mixin size($size) {
+/*        @mixin size($size) {
           width: $size;
           height: $size;
-        }
+        }*/
 
-        @mixin abs-pos {
+/*        @mixin abs-pos {
           display: block;
           position: absolute;
           top: 0;
@@ -33,12 +41,13 @@
         body,
         canvas {
           @include size(100%);
-        }
+        }*/
 
         body {
-          @include size(100%);
-          background-color: #222;
-          /*background-image: url('https://drive.google.com/uc?export=view&id=0BzFF7FmbJUo5X0NEUXFVd0NBcWc');*/
+          /*@include size(100%);*/
+          background-color: #303641;
+          color: #C1C3C6
+          /*background-image: url('https://drive.google.com/uc?export=view&id=0BzFF7FmbJUo5X0NEUXFVd0NBcWc');
           background-size: cover;
           background-position: 0 0;
           background-repeat: no-repeat;
@@ -51,24 +60,16 @@
             background-color: rgba(0, 0, 0, 0.1);
             z-index: 1;
             animation: thunder-bg 6s infinite;
-          }
+          }*/
         }
 
-        canvas {
+/*        canvas {
           @include abs-pos;
         }
-
-        #canvas3 {
+*/
+      /*  #canvas3 {
           z-index: 5;
-        }
-
-        #canvas2 {
-          z-index: 10;
-        }
-
-        #canvas1 {
-          z-index: 100;
-        }
+        }*/
 
         $color1: rgba(34,
         34,
@@ -112,39 +113,57 @@
           }
         }
 
+
+        #canvas3 {
+        	position: absolute;
+        }
+
+/*        #login {
+        	position: absolute;
+        }*/
+
     </style>
 </head>
 <body class="thunder">
-  <canvas id="canvas1"></canvas>
-  <canvas id="canvas2"></canvas>
   <canvas id="canvas3"></canvas>
+    <div class="container" id="login">
+      <form class="form-signin" role="form" action="index.html">
+        <h3 class="form-signin-heading">Please sign in</h3>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="glyphicon glyphicon-user"></i>
+            </div>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class=" glyphicon glyphicon-lock "></i>
+            </div>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+          </div>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> &nbsp Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div>
 </body>
 <script type="text/javascript">
-    
-    // var canvas1 = document.getElementById('canvas1');
-    // var canvas2 = document.getElementById('canvas2');
     var canvas3 = document.getElementById('canvas3');
-    // var ctx1 = canvas1.getContext('2d');
-    // var ctx2 = canvas2.getContext('2d');
     var ctx3 = canvas3.getContext('2d');
-
-    var rainthroughnum = 500;
-    var speedRainTrough = 25;
-    var RainTrough = [];
-
-    var rainnum = 500;
-    var rain = [];
 
     var lightning = [];
     var lightTimeCurrent = 0;
     var lightTimeTotal = 0;
 
-    var w = canvas1.width = canvas2.width = canvas3.width = window.innerWidth;
-    var h = canvas1.height = canvas2.height = canvas3.height = window.innerHeight;
-    window.addEventListener('resize', function() {
-      w = canvas1.width = canvas2.width = canvas3.width = window.innerWidth;
-      h = canvas1.height = canvas2.height = canvas3.height = window.innerHeight;
-    });
+    var w = canvas3.width = window.innerWidth;
+    var h = canvas3.height = window.innerHeight;
 
     function random(min, max) {
       return Math.random() * (max - min + 1) + min;
@@ -226,8 +245,6 @@
     }
 
     function animloop() {
-      // animateRainTrough();
-      // animateRain();
       animateLightning();
       requestAnimationFrame(animloop);
     }
