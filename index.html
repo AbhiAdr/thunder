@@ -211,7 +211,7 @@
         }
 
         ctx3.strokeStyle = 'rgba(255, 255, 255, .1)';
-        ctx3.lineWidth = 3;
+        ctx3.lineWidth = 1;
         if (random(0, 15) === 0) {
           ctx3.lineWidth = 6;
         }
@@ -225,8 +225,8 @@
           ctx3.lineTo(light.path[pc].x, light.path[pc].y);
         }
         if (Math.floor(random(0, 30)) === 1) { //to fos apo piso
-          ctx3.fillStyle = 'rgba(255, 255, 255, ' + random(1, 3) / 100 + ')';
-          ctx3.fillRect(0, 0, w, h);
+          //ctx3.fillStyle = 'rgba(255, 255, 255, ' + random(1, 3) / 100 + ')';
+          //ctx3.fillRect(0, 0, w, h);
         }
         ctx3.lineJoin = 'miter';
         ctx3.stroke();
